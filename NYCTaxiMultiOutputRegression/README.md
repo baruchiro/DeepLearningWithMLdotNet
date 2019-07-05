@@ -68,7 +68,7 @@ string TestDataPath = "NYCTaxi/test.csv";
 MLContext mlContext = new MLContext(seed: 0);
 
 // STEP 1: Common data loading configuration
-TextLoader textLoader = mlContext.Data.CreateTextReader(new[]
+TextLoader textLoader = mlContext.Data.CreateTextLoader(new[]
                                                         {
                                                             new TextLoader.Column("VendorId", DataKind.Text, 0),
                                                             new TextLoader.Column("RateCode", DataKind.Text, 1),
@@ -83,8 +83,8 @@ TextLoader textLoader = mlContext.Data.CreateTextReader(new[]
                                                             separatorChar: ','
                                                         );
 
-IDataView baseTrainingDataView = textLoader.Read(TrainDataPath);
-IDataView testDataView = textLoader.Read(TestDataPath);
+IDataView baseTrainingDataView = textLoader.Load(TrainDataPath);
+IDataView testDataView = textLoader.Load(TestDataPath);
  ```
 
  ### 2. Building the Pipeline
